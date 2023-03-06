@@ -35,9 +35,9 @@ public class MahjongTableController : MonoBehaviour
         {
             for(int y = 0; y < mahjongTable.Height; y++)
             {
-                GameObject tile = Instantiate(tileDict[mahjongTable.Tiles[x, y].type], transform);
-                tile.GetComponent<TileController>().Init(mahjongTable.Tiles[x, y]);
-                tile.transform.position = new Vector3(x, y, 1);
+                TileController tile = Instantiate(tileDict[mahjongTable.Tiles[x, y].type], transform).GetComponent<TileController>();
+                tile.Init(mahjongTable.Tiles[x, y]);
+                tile.MoveToPosition(new Vector3(x, y, 1));
             }
         }
     }

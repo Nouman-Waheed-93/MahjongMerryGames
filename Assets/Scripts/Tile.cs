@@ -17,6 +17,11 @@ public class Tile
 
     public Transform Transform { get => transform; set => transform = value; }
 
+    private Vector3 targetPosition;
+    private Vector3 previousPosition;
+
+    private float movementTime;
+
     public Tile(TileType type) //Only for Unit testing
     {
         this.type = type;
@@ -35,9 +40,16 @@ public class Tile
         mahjongTable.PickTileOut(this);
     }
 
-    public void MoveToPosition(Vector3 position)
+    public void MoveToLocalPosition(Vector3 position)
     {
-        if(transform)
-            transform.localPosition = position;
+        previousPosition = targetPosition;
+        targetPosition = transform.parent.TransformPoint(position);
+        movementTime = 0;
+    }
+
+    public void Update(float simulationDeltaTime)
+    {
+        movementTime += simulationDeltaTime;
+        transform.position = Vector3.Lerp(previousPosition, targetPosition, movementTime);
     }
 }

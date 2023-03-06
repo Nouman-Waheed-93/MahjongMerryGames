@@ -73,10 +73,10 @@ public class CollectionTank
         for (int i = top; i > index; i--)
         {
             tiles[i] = tiles[i - 1];
-            tiles[i].MoveToPosition(new Vector3(i, 0, 0));
+            tiles[i].MoveToLocalPosition(new Vector3(i, 0, 0));
         }
         tiles[index] = tile;
-        tiles[index].MoveToPosition(new Vector3(index, 0, 0));
+        tiles[index].MoveToLocalPosition(new Vector3(index, 0, 0));
     }
 
     private bool HasCollectedThreeOfAKind(int newTileIndex)
@@ -100,16 +100,16 @@ public class CollectionTank
             {
                 bool tileIsRemoved = i < startIndex + numberOfTiles;
                 if (tileIsRemoved)
-                    tiles[i].MoveToPosition(new Vector3(-10, 0, 0));
+                    tiles[i].MoveToLocalPosition(new Vector3(-10, 0, 0));
 
                 tiles[i] = tiles[i + numberOfTiles];
                 tiles[i + numberOfTiles] = null;
 
-                tiles[i].MoveToPosition(new Vector3(i, 0, 0));
+                tiles[i].MoveToLocalPosition(new Vector3(i, 0, 0));
             }
             else
             {
-                tiles[i]?.MoveToPosition(new Vector3(-10, 0, 0));
+                tiles[i]?.MoveToLocalPosition(new Vector3(-10, 0, 0));
                 tiles[i] = null;
             }
         }

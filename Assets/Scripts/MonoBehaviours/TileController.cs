@@ -10,6 +10,18 @@ public class TileController : MonoBehaviour
     {
         this.tile = tile;
         tile.Transform = transform;
+        Random.InitState(tile.X + tile.Y);
+        tile.MoveToLocalPosition(Random.insideUnitSphere * 10f);
+    }
+
+    public void MoveToPosition(Vector3 position)
+    {
+        tile.MoveToLocalPosition(position);
+    }
+
+    private void Update()
+    {
+        tile.Update(Time.deltaTime);
     }
 
     private void OnMouseUpAsButton()
