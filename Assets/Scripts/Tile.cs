@@ -37,6 +37,7 @@ public class Tile
 
     public void MoveToPosition(Vector3 position)
     {
-        transform.localPosition = position;
+        if(transform)
+            transform.localPosition = position;
     }
 }

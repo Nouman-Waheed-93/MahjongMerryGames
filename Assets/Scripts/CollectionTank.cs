@@ -32,8 +32,9 @@ public class CollectionTank
     {
         if (top < capacity)
         {
-
-            tile.Transform.parent = transform;
+            if(transform)
+                tile.Transform.parent = transform;
+    
             int pushAtIndex = GetPushIndex(tile.type);
             PushTileAtIndex(tile, pushAtIndex);
 
